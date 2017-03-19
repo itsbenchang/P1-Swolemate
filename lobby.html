@@ -17,40 +17,61 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
 </head>
 
-<body>
-
+<body >
+<!-- style="height: 62vh" -->
 <div class="container">
-    <div class="header">
-    	<h3>Swole Chat!</h3>
+    <div id="chatheader">
+    	<h3>Swole Chat!------------------------------------------------------------------------</h3>
         <div>
             Swolename: <span class="username"></span>
         </div>
+
     </div>
 
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="channels"></div>
+	<div class="row" id="chatcontent">
+		<div class="linebottom"></div>
+		<div class="col-sm-2">
+			<div class="chatchannels">Channels</div>
 		</div>
 
-	    <div class="col-sm-8">
+	    <div class="col-sm-10 messagewindow">
 	        <div class="messages">
 	        	<ul>
 
 	        	</ul>
 			</div>
-	    
+		</div>
+	</div>
+		
+	<div class="row">
+		<div class="col-sm-12">
+		    <div id="chatfooter">
+				<div class="linebottom"></div>
+			    
+			    <div class="form">
+			         <form>
+			            <div class="form-inner" >
+			            	<div class="row chatWindow" >
+			            		<div class="col-xs-10 chatBox">
+									
+				                	<input type="text" name="message" id='message-input'>
+				            	</div>
+				              	<div class="col-xs-2 chatButton">
 
-		    <div class="stack-wrap"></div>
-		    <div class="form">
-		         <form>
-		            <div class="form-inner">
-		                <input type="text" name="message" id='message-input'>
-		                <button id='send'><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-		            </div>
-		         </form>
-		    </div>
+				                	<button id='send'><i class="">Send</i></button>
+				            	</div>
+				            </div>
+				            	
+				            
+			            </div>
+			         </form>
+			    </div>
+			</div>
+
 	    </div>
 
 	</div>

@@ -1,9 +1,16 @@
-// available functions and variables from app.js:
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyCqu0vQlmbSOFk5U4UVmJaW1_ytFhm8mbw",
+    authDomain: "fb-chatroom.firebaseapp.com",
+    databaseURL: "https://fb-chatroom.firebaseio.com",
+    storageBucket: "fb-chatroom.appspot.com",
+    messagingSenderId: "482504856972"
+};
+firebase.initializeApp(config);
+
 // updateMessages(snapshot) -- updates all messages based on a snapshot object which holds all messages
 //                             Run this when ever the data object is updated.
 //                             For Firebase, add it as a callback to an on value change once
-//
-
 
 var chatroom = firebase.database().ref('hackers');
 
@@ -33,4 +40,45 @@ $("#send").click(function () {
 });
 
 
+// var curUser = prompt("Please enter a username", "jigglybrain") || 'unknown';
+    var curUser = "Bot";
 
+$('.username').html(curUser);
+// helper functions
+
+
+//use newMessage to add a new message to the UI
+// isCurUser should be set to true or false
+function newMessage(message, username, time) {
+    var position;
+    if (curUser == username) {
+        position = 'right'
+    }
+    else {
+        position = 'left'
+    }
+
+    // $('.messages > ul').append($("<span class='li-username'>" + username + "blah"));
+    $('.messages > ul').append($("<li class='li-" + position + "'><span class='li-message'>" + message + "</span><span class='li-username'>- " + username + " | " + time + "</span></li>"));
+
+}
+
+function scrollToBottom() {
+    $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 1000);
+}
+
+
+function updateUI(messages) {
+    $('.messages > ul').html('');
+
+
+    for (var key in messages) {
+        var message = messages[key];
+        var isCurUser = curUser == message.username;
+
+        newMessage(messages[key].message, messages[key].username, messages[key].time);
+    }
+
+
+    scrollToBottom();
+}
