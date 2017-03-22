@@ -1,56 +1,105 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="UTF-8">
     <title>
       Swolemate
     </title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
-    <!-- <link href="assets/css/reset.css" rel="stylesheet" type="text/css"> -->
+    <link href="assets/css/reset.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
     </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-    </script>
   </head>
 <body>
 
-<header class = "jumbotron">
-Swolemate
-</header>
-<h2>Login</h2>
-
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
-<div id="id01" class="modal">
-  
-  <form class="modal-content animate">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
-
+<header class="navbar navbar-static-top navbar-inverse bg-primary" id="top" role="banner">
     <div class="container">
-      <label><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <input type="checkbox" checked="checked"> Remember me
+        <div class="navbar-header">
+            <a href="index.html" class="navbar-brand">Swolemates</a>
+            <button id="login-button">Login</button>
+            <button id="signup-button">Sign Up</button>
+        </div>
     </div>
+</header>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
+
+<div class="main">
+  <div class="splash">  <div class="intro">Swolemates. <p> Get fit. Make friends. ???? Profit.</p></div>
 </div>
+</div>
+
+
+<div id="container-login">
+<div id="login">
+  <div class="modal-body">
+    <div class="container-fluid">
+      <form class="modal-content animate">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <img src="assets/images/jim.gif" alt="Avatar" class="avatar">
+      </div>
+      <button id="fb">Log in with facebook</button>
+      <p id="logintext"><br>--- Or log in with email ---</p>
+      <div class="container-form">
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Enter Username" id="email" name="uname" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" id="password" name="psw" required>
+          
+        <button type="submit" id="submit-login">Login</button>
+        <input type="checkbox" checked="checked"> Remember me
+      </div>
+
+      <div class="container-form">
+        <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>  
+    </div>
+  </div>
+</div>
+
+<div id="signup">
+  <div class="modal-body">
+    <div class="container-fluid">
+      <form class="modal-content animate">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <img src="assets/images/jim.gif" alt="Avatar" class="avatar">
+      </div>
+
+      <div class="container-form">
+<!--         <label><b>Swolename</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required> -->
+
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Email" name="email" id="email" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Must be more than 6 characters" name="psw" id="password" required>
+          
+        <label><b>Zipcode</b></label>
+        <input type="text" placeholder="Meet swolemates near you" name="zipcode" required>  
+
+        <button type="submit">Sign Up</button>
+        </div>
+
+      <div class="container-form">
+        <button type="button" onclick="document.getElementById('signup').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>  
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
 
 <script src="assets/javascript/script.js"></script>
 
