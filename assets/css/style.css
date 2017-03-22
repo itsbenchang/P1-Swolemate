@@ -227,11 +227,45 @@ main{
     margin-top: 100px;
 }
 
+/*NAVBAR **/
+
+#message{
+    width: 10%;
+    min-width: 100px;
+    background-color: transparent;
+}
+
+#message-count{
+    text-align: center;
+    display: inline-block;
+}
 
 
+/* PROFILE CSS ***/
 
+#profile{
+    width:10%;
+    min-width: 80px;
+    background-color: transparent;
+    border-radius: 5px;
+}
 
+#explore{
+    width:10%;
+    min-width: 80px;
+    background-color: transparent;
+    border-radius: 5px;
+}
 
+.choose-photo{
+    display: none; /* Hidden by default */
+    position: fixed;  /*Stay in place*/ 
+    z-index: 1;  /*Sit on top */
+    top: 0;
+    width: 50%;  /*Full width*/ 
+    height: 100%;  /*Full height*/ 
+    overflow: auto;  /*Enable scroll if needed */
+}
 /*.upload-button {
     padding: 4px;
     border: 1px solid black;
@@ -240,10 +274,83 @@ main{
     float: left;
 }*/
 
-.profile-pic {
-    margin-left: 40px;
-    max-width: 200px;
-    max-height: 200px;
+.profile-pic{
+    border-radius: 10px;
+    border: 2px gray solid;
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
     display: flex;
 }
 
+#image{
+    background-image: url('../images/weight.jpg');
+    background-repeat:no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    background-position:center;
+    height:350px;
+    margin: 0;
+}
+
+#pic-name{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+#name{
+    font-size: 30px;
+    padding-top: 20px;
+    margin: 0 auto;
+    width:100%;
+    height:100px;
+    /*border: 2px solid gray;*/
+    line-height: 50px;
+    background-color: rgba(0,0,0,0.4);
+    margin-top: 20px;
+    color:white;
+    font-weight: bold;
+}
+
+#add-friend{
+    margin-top: 20px;
+    background-color: skyblue;
+    max-width: 500px;
+}
+
+#asl{
+    margin-top: -26px;
+    text-align: center;
+}
+
+.asl-info{
+    color:white;
+    font-size: 15px;
+    text-align: center;
+    display: inline-block;
+}
+
+#bio{
+    height:300px;
+    overflow: auto;
+}
+
+.file-upload{
+    width:90px;
+}
+
+.name-profile{
+    text-align: center;
+}
+
+.about{
+        border: 2px solid red;
+
+    position: relative;
+    margin-top: 40px;
+}
+/* ^ PROFILE CSS ^ */

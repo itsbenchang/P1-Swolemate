@@ -12,31 +12,55 @@
     <link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
     </script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
 <body>
 
-<div class="header">
-  <nav class="navbar navbar-light bg-primary">
+<header class="navbar navbar-static-top navbar-inverse bg-primary" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="index.html" class="navbar-brand">Swolemates</a>
+            <button id="profile">Profile</button>
+            <button id="explore">Explore</button>
+            <button id="message">Messages <span class="badge" id="message-count"> 10</span></button>
+        </div>
+    </div>
+</header>
 
-    <ul class="nav nav-pills">
-      <a class="navbar-brand" href="#">
-        Swolemates
-      </a>
-      <li role="presentation" class="active"><a href="#">Home</a></li>
-      <li role="presentation" class="active"><a href="#">Profile</a></li>
-      <li role="presentation" class="active"><a href="#">Messages</a></li>
-    </ul>
-</div>
-</div>
+<div class="main">
+  <section class="name-profile">
+    <div id = "image">
+        <div id="pic-name">
+          <img class="profile-pic" src="assets/images/jim.gif" />
+        </div>
+        <div id="name">Jim Nasium</div>
+        <div id="asl"> 
+          <p class="asl-info" id="age">AGE: 28 /</p>
+          <p class="asl-info" id="sex">GENDER: M /</p>
+          <p class="asl-info" id="location">LOCATION: 91205</p> 
+        </div>
+        <button id="add-friend">ADD FRIEND</button>
+<!--           <div id="choose-photo">
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="modal-content animate">
+                  <div class="upload-button"></div>
+                  <input class="file-upload" type="file" accept="image/*"/>
+                </div>
+              </div>
+            </div>
+          </div> -->  
+      </div>
+
+  </section>
+  <section class="about">
+      <div id="bio" class="">
+        <div id="interest">Interests</div>
+      </div>
+  </section>
+  <section class="sidebar">
+  </section>
 </div>
 
-<div>
-	<img class="profile-pic" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg" />
-	<div class="upload-button"></div>
-	<input class="file-upload" type="file" accept="image/*"/>
-</div>
 <script src="assets/javascript/script.js"></script>
 
 </body>

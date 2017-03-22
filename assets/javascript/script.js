@@ -10,8 +10,12 @@ $("#signup-button").on("click", function(){
 });
 
 $("#submit-login").on("click", function(){
-	
+	console.log("click");
+	$(location).attr("href","profile.html");
+	return false;
 });
+
+$('button').mouseup(function() { this.blur() })
 
 $(function () {
     var splash = $('.splash');
@@ -32,6 +36,19 @@ $(function () {
     setTimeout(nextBackground, 5000);
     splash.css('background-image', backgrounds[0]);
 });
+
+   // Firebase 
+
+ // Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyDxQ4YEmF_TY6huoWtT67y2Xj7Gw-0hyoM",
+   authDomain: "swolemate-e6470.firebaseapp.com",
+   databaseURL: "https://swolemate-e6470.firebaseio.com",
+   storageBucket: "swolemate-e6470.appspot.com",
+   messagingSenderId: "771999306115"
+ };
+
+
 
 
 $(document).ready(function() {

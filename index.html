@@ -18,7 +18,7 @@
 <header class="navbar navbar-static-top navbar-inverse bg-primary" id="top" role="banner">
     <div class="container">
         <div class="navbar-header">
-            <a href="#" class="navbar-brand">Swolemates</a>
+            <a href="index.html" class="navbar-brand">Swolemates</a>
             <button id="login-button">Login</button>
             <button id="signup-button">Sign Up</button>
         </div>
@@ -31,9 +31,6 @@
 </div>
 </div>
 
-<div class="sidebar">
-
-</div>
 
 <div id="container-login">
 <div id="login">
@@ -48,10 +45,10 @@
       <p id="logintext"><br>--- Or log in with email ---</p>
       <div class="container-form">
         <label><b>Email</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input type="text" placeholder="Enter Username" id="email" name="uname" required>
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password" id="password" name="psw" required>
           
         <button type="submit" id="submit-login">Login</button>
         <input type="checkbox" checked="checked"> Remember me
@@ -80,10 +77,10 @@
         <input type="text" placeholder="Enter Username" name="uname" required> -->
 
         <label><b>Email</b></label>
-        <input type="text" placeholder="Email" name="email" required>
+        <input type="text" placeholder="Email" name="email" id="email" required>
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Must be more than 6 characters" name="psw" required>
+        <input type="password" placeholder="Must be more than 6 characters" name="psw" id="password" required>
           
         <label><b>Zipcode</b></label>
         <input type="text" placeholder="Meet swolemates near you" name="zipcode" required>  
@@ -102,7 +99,7 @@
 </div>
 
 
-
+<script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
 <script src="assets/javascript/script.js"></script>
 
 </body>
