@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Swolemate map
+    </title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+    <!-- <link href="assets/css/reset.css" rel="stylesheet" type="text/css"> -->
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <!--<link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"> -->
+    <!-- leaflet map link -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    <!-- leaflet javascript file -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/rmxdave/phnx/master/lib/OAuth/OAuth.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/rmxdave/phnx/master/lib/OAuth/SHA1.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="mapid"></div>
+    </div>
+    <script>
+    var loc = L.latLng(34.05437, -118.23868)
+    var mymap = L.map('mapid').setView(L.latLng(34.05437, -118.23868), 13);
+
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+
+    var marker = L.marker(loc).addTo(mymap);
+
+    var circle = L.circle(loc, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.15,
+        radius: 500
+    }).addTo(mymap);
+
+    /* var polygon = L.polygon([
+         [51.509, -0.08],
+         [51.503, -0.06],
+         [51.51, -0.047]
+     ]).addTo(mymap);
+
+    marker.bindPopup("<b>Hello world!</b><br>I am a Ben.").openPopup();
+    circle.bindPopup("I am charolette.");
+    polygon.bindPopup("I am a Daniel.");*/
+
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(mymap);
+    }
+
+    mymap.on('click', onMapClick);
+    </script>
+    <script type="text/javascript">
+    function cb(data) {
+        console.log("cb: " + JSON.stringify(data));
+    }
+
+    var auth = {
+        //
+        // Update with your auth tokens.
+        //
+        consumerKey: "",
+        consumerSecret: "",
+        accessToken: "",
+        // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+        // You wouldn't actually want to expose your access token secret like this in a real application.
+        accessTokenSecret: "",
+        serviceProvider: {
+            signatureMethod: "HMAC-SHA1"
+        }
+    };
+
+    var terms = 'food';
+    var near = 'San+Francisco';
+
+    var accessor = {
+        consumerSecret: auth.consumerSecret,
+        tokenSecret: auth.accessTokenSecret
+    };
+
+    var parameters = [];
+    parameters.push(['term', terms]);
+    parameters.push(['location', near]);
+    parameters.push(['callback', 'cb']);
+    parameters.push(['oauth_consumer_key', auth.consumerKey]);
+    parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+    parameters.push(['oauth_token', auth.accessToken]);
+    parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+    var message = {
+        'action': 'https://api.yelp.com/v2/search',
+        'method': 'GET',
+        'parameters': parameters
+    };
+
+    OAuth.setTimestampAndNonce(message);
+    OAuth.SignatureMethod.sign(message, accessor);
+
+    var parameterMap = OAuth.getParameterMap(message.parameters);
+
+    $.ajax({
+            'url': message.action,
+            'data': parameterMap,
+            'dataType': 'jsonp',
+            'jsonpCallback': 'cb',
+            'cache': true
+        })
+        .done(function(data, textStatus, jqXHR) {
+            console.log('success[' + data + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log('error[' + errorThrown + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
+        });
+    </script>
+    </script>
+</body>
+
+</html>
