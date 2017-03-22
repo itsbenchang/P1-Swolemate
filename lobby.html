@@ -24,56 +24,47 @@
 <body >
 <!-- style="height: 62vh" -->
 <div class="container">
-    <div id="chatheader">
-    	<h3>Swole Chat!------------------------------------------------------------------------</h3>
-        <div>
-            Swolename: <span class="username"></span>
-        </div>
-
+    <div class="row" id="chatheader">
+    	<div class="col-sm-12">
+	    	<h3>Swole Chat!---------------------------------------------------</h3>
+	        <div>
+	            Swolename: <span class="username"></span>
+	        </div>
+	    </div>
     </div>
 
-	<div class="row" id="chatcontent">
+	<div class="row chatMessages" id="chatcontent">
 		<div class="linebottom"></div>
-		<div class="col-sm-2">
-			<div class="chatchannels">Channels</div>
-		</div>
-
-	    <div class="col-sm-10 messagewindow">
-	        <div class="messages">
-	        	<ul>
-
-	        	</ul>
+		
+			<div class="col-sm-3">
+				<div class="chatchannels">Channels</div>
 			</div>
-		</div>
+		    <div class="col-sm-9 messagewindow">
+		        <div class="messages">
+		        	<ul></ul>
+				</div>
+			</div>
+		
 	</div>
 		
-	<div class="row">
+	<div class="row" id="chatfooter">
 		<div class="col-sm-12">
-		    <div id="chatfooter">
-				<div class="linebottom"></div>
-			    
-			    <div class="form">
-			         <form>
-			            <div class="form-inner" >
-			            	<div class="row chatWindow" >
-			            		<div class="col-xs-10 chatBox">
-									
-				                	<input type="text" name="message" id='message-input'>
-				            	</div>
-				              	<div class="col-xs-2 chatButton">
-
-				                	<button id='send'><i class="">Send</i></button>
-				            	</div>
-				            </div>
-				            	
-				            
+			<div class="linebottom"></div>
+		    <div class="form">
+		         <form>
+		            <div class="form-inner" >
+		            	<div class="row chatWindow" >
+		            		<div class="col-xs-10 chatBox">
+			                	<input type="text" name="message" id='message-input'>
+			            	</div>
+			              	<div class="col-xs-2 chatButton">
+			                	<button id='send'><span class="glyphicon glyphicon-send"></span></button>
+			            	</div>
 			            </div>
-			         </form>
-			    </div>
-			</div>
-
+		            </div>
+		         </form>
+		    </div>
 	    </div>
-
 	</div>
 
 </div>

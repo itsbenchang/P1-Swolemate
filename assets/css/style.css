@@ -53,7 +53,6 @@ button:hover {
     position: relative;
 }
 
-
 img.avatar {
     width: 30%;
     border-radius: 50%;
@@ -192,6 +191,35 @@ p{
     .cancelbtn {
        width: 100%;
     }
+
+	#chatheader {
+	   position:fixed;
+	   top: 0;
+	   left: 0;
+	   right: 0;
+	   height: 75px;
+	   width:100%;
+	}
+
+	#chatfooter {
+	   position:fixed;
+	   left:0px;
+	   bottom:0px;
+	   height: 80px;
+	   width:100%;
+	}
+
+	#chatcontent {
+	    position: fixed;
+	    top: 75px;
+	    bottom: 80px;
+	    left: 0;
+	    right: 0;
+	    background-color: #F63;
+	    overflow: auto;
+	}
+
+
 }
 
 /*Formatting swole lobby -----------------------------------*/
@@ -290,6 +318,11 @@ p{
     padding-right: 0px !important;
 }
 
+.chatMessages {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
 .chatWindow {
     margin-left: 0px !important;
     margin-right: 0px !important;
@@ -309,31 +342,38 @@ p{
 }
 
 #chatheader {
-   position:fixed;
-   top: 0;
-   left: 0;
-   right: 0;
-   height: 75px;
-   width:100%;
+	position:fixed;
+	top: 0;
+	left: 15%;
+	right: 15%;
+	height: 75px;
+
 }
 
 #chatfooter {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height: 80px;
-   width:100%;
+	position:fixed;
+	left: 15%;
+	right: 15%;
+	bottom:0px;
+	height: 80px;
+
 }
 
 #chatcontent {
     position: fixed;
     top: 75px;
     bottom: 80px;
-    left: 0;
-    right: 0;
+    left: 15%;
+    right: 15%;
     background-color: #F63;
     overflow: auto;
 }
+
+#send {
+	font-size: 3vmin;
+}
+
+/* ------End of lobby css -------------*/
 
 main{
     width:100%;
