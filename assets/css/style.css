@@ -8,7 +8,6 @@ html, body{
     text-align: center;
 }
 
-
 /*onclick="document.getElementById('login').style.display='block'" style="width:auto
 */
 h2{
@@ -195,6 +194,147 @@ p{
     }
 }
 
+/*Formatting swole lobby -----------------------------------*/
+.messages {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1px;
+      -ms-flex: 1 1px;
+          flex: 1 1px;
+  background: #F1F5F8;
+  overflow-y: scroll;
+  /*margin-top: 75px;*/
+
+  /*height: auto;*/
+  /*max-height: 45vw;*/
+}
+.messages ul {
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+}
+.messages ul::after {
+  content: " ";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}
+.messages li {
+  float: left;
+  clear: both;
+  line-height: 1.4em;
+  max-width: 224px;
+  margin: 12px;
+  padding: 0.7em 16px;
+  border-radius: 18px;
+  font-family: sans-serif;
+  color: whitesmoke;
+}
+
+.messages .li-left {
+    /*border-bottom-left-radius: 2px;*/
+    background-color: #1b85e4;
+}
+
+.messages .li-right {
+  float: right;
+  /*border-bottom-right-radius: 2px;*/
+  background: #87BB71;
+}
+
+.messagewindow {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.form {
+  background: gainsboro;
+}
+
+.form-inner {
+  height: 80px;
+  border-radius: 2px;
+  background: whitesmoke;
+  
+}
+
+.form-inner input {
+    padding: 0px;
+    font-size: 20px;
+    border-radius: 10px;
+    height: 60px;
+    margin: 0px;
+}
+.form-inner button {
+  height: 60px;
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  color: whitesmoke;
+  background: skyblue;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.chatButton {
+    padding-left: 10px !important;
+    padding-right: 0px !important;
+}
+
+.chatBox {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.chatWindow {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding: 10px;
+}
+
+.linebottom {
+    border-bottom: 2px solid #eaeaea;
+}
+
+.linetop {
+    border-top: 2px solid #eaeaea;
+}
+.swoleLobby {
+    /*height: 120%;*/
+    /*min-height: 100%;*/
+}
+
+#chatheader {
+   position:fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   height: 75px;
+   width:100%;
+}
+
+#chatfooter {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height: 80px;
+   width:100%;
+}
+
+#chatcontent {
+    position: fixed;
+    top: 75px;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    background-color: #F63;
+    overflow: auto;
+}
+
 main{
     width:100%;
     min-height:100%;
@@ -354,3 +494,4 @@ main{
     margin-top: 40px;
 }
 /* ^ PROFILE CSS ^ */
+
