@@ -12,14 +12,21 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-
-
 var map;
+var infowindow;
 var userZipcode = 0;
 var userCenter = {
     lat: 34.0689,
     lng: -118.4452
 }
+var userInterest = ["yoga", "martial arts"]
+var userInput = "";
+
+$("#checkbox").on("click",function(){
+	userInput = $(this).attr("value");
+	console.log(userInput);
+
+});
 
 
 function initMap() {
@@ -27,28 +34,75 @@ function initMap() {
         lat: -25.363,
         lng: 131.044
     };*/
+
     console.log(userCenter);
+    console.log(userInterest);
+
     //initializes map with zoom on current center
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
+        zoom: 12,
         center: userCenter,
     });
     //Makes a marker in your current center
-    var marker = new google.maps.Marker({
+    /*var marker = new google.maps.Marker({
+        clickable: true,
+        cursor: "hi",
+        animation: google.maps.Animation.DROP,
         position: userCenter,
         map: map
-    });
+    });*/
+    infowindow = new google.maps.InfoWindow();
+
+    function populateMap() {
+        var service = new google.maps.places.PlacesService(map);
+        generateRadius();
+        console.log( userCenter)
+        service.textSearch({
+            location: userCenter,
+            radius: 8050,
+            query: 'bjj'
+
+        }, callback);
+    }
+
+    function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+
+            }
+        }
+    }
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        console.log(place);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location,
+            animation: google.maps.Animation.DROP
+
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+            console.log(place.geometry.location);
+        });
+    }
+
+
     //call geocoder
     var geocoder = new google.maps.Geocoder();
     //on click translate inputted zipcode to lat lng
     document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
-        generateRadius();
+       
 
     });
-    //clear all markers and circles
-    $("#clear").on("click", function() {
-
+    //generates circle
+    $("#radius").on("click", function() {
+        populateMap();
     });
 
     function generateRadius() {
@@ -58,7 +112,7 @@ function initMap() {
             strokeOpacity: 0.8,
             strokeWeight: 2,
             fillColor: '#FF0000',
-            fillOpacity: 0.35,
+            fillOpacity: 0.15,
             map: map,
             center: userCenter,
             radius: 8050
@@ -68,6 +122,7 @@ function initMap() {
         console.log(cityCircle);
         console.log("working");
     }
+
 
 
 }
@@ -84,9 +139,13 @@ function geocodeAddress(geocoder, resultsMap) {
             lng = results[0].geometry.location.lng();
             //create new marker at zipcode location
             var marker = new google.maps.Marker({
+                draggable: true,
                 map: resultsMap,
                 position: results[0].geometry.location
             });
+
+
+
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
@@ -96,7 +155,7 @@ function geocodeAddress(geocoder, resultsMap) {
             lng: lng
         }
 
-        console.log("new center "+lat, lng);
+        console.log("new center " + lat, lng);
 
         console.log(userCenter);
     });
