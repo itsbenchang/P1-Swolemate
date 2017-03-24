@@ -113,11 +113,13 @@ p{
     position: fixed;  /*Stay in place*/ 
     z-index: 1;  /*Sit on top */
     top: 0;
+    min-width: 300px;
     max-width: 500px;
     padding-top: 60px;
     width: 50%;  /*Full width*/ 
     height: 100%;  /*Full height*/ 
-    overflow: auto;  /*Enable scroll if needed 
+    overflow: auto;  /*Enable scroll if needed*/ 
+    margin-left: -18%;
     /*background-color: rgb(0,0,0); /* Fallback color */
     /*background-color: rgba(0,0,0,0.4);  /*Black w/ opacity */
 }
@@ -127,6 +129,8 @@ p{
     position: fixed;  /*Stay in place*/ 
     z-index: 1;  /*Sit on top */
     top: 0;
+     min-width: 300px;
+    max-width: 500px;
     width: 50%;  /*Full width*/ 
     height: 100%;  /*Full height*/ 
     overflow: auto;  /*Enable scroll if needed 
@@ -134,7 +138,7 @@ p{
     /*background-color: rgba(0,0,0,0.4);  /*Black w/ opacity */
     padding-top: 60px;
     max-width: 500px;
-
+    margin-left: -18%;
 }
 
 #container-login{
@@ -149,6 +153,7 @@ p{
     margin: 5% auto 15% auto;  /*5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    min-width: 300px;
 }
 
 /* The Close Button (x) */
@@ -335,9 +340,11 @@ p{
     overflow: auto;
 }
 
-main{
+.main{
     width:100%;
     min-height:100%;
+    background-color: gray;
+    overflow: auto;
 }
 
 .splash{
@@ -383,18 +390,10 @@ main{
 
 /* PROFILE CSS ***/
 
-#profile{
+.header-button{
     width:10%;
-    min-width: 80px;
+    min-width: 20px;
     background-color: transparent;
-    border-radius: 5px;
-}
-
-#explore{
-    width:10%;
-    min-width: 80px;
-    background-color: transparent;
-    border-radius: 5px;
 }
 
 .choose-photo{
@@ -456,10 +455,17 @@ main{
     font-weight: bold;
 }
 
+#friend{
+    background-color: black;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
 #add-friend{
     margin-top: 20px;
     background-color: skyblue;
     max-width: 500px;
+    /*width:100%;*/
 }
 
 #asl{
@@ -475,8 +481,15 @@ main{
 }
 
 #bio{
-    height:300px;
+    position: relative;
     overflow: auto;
+    margin:20px;
+    margin-top: 45px;
+}
+
+h3{
+    color:white;
+    font-size: 2em;
 }
 
 .file-upload{
@@ -488,10 +501,33 @@ main{
 }
 
 .about{
-        border: 2px solid red;
-
+    /*border: 2px solid red;*/
     position: relative;
-    margin-top: 40px;
+    margin-top: 70px;
+}
+
+
+.panel-body{
 }
 /* ^ PROFILE CSS ^ */
+
+
+/*FOOTER*/
+
+.footer,
+.push{
+    height:60px;
+    background-color:#797878;
+    justify-content: center;
+}
+
+.text-footer{
+    color:black;
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+}
+
+/*^ FOOTER^*/
+
 
