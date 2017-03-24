@@ -22,9 +22,9 @@ $(function () {
     splash.css('background-image', backgrounds[0]);
 });
 
-   // Firebase 
+// Firebase 
 
- // Initialize Firebase
+// Initialize Firebase
  var config = {
    apiKey: "AIzaSyDxQ4YEmF_TY6huoWtT67y2Xj7Gw-0hyoM",
    authDomain: "swolemate-e6470.firebaseapp.com",
@@ -75,8 +75,8 @@ $(function () {
 
 
     function handleSignUp() {
-      var email = document.getElementById('email').value;
-      var password = document.getElementById('password').value;
+      var email = document.getElementById('email-signup').value;
+      var password = document.getElementById('password-signup').value;
       if (email.length < 4) {
         alert('Please enter an email address.');
         return;
@@ -148,17 +148,17 @@ function initApp() {
         } else {
           // User is signed out.
           // [START_EXCLUDE]
-          document.getElementById('login-button').textContent = 'Log in';
+          //document.getElementById('login-button').textContent = 'Log in';
           // document.getElementById('quickstart-account-details').textContent = 'null';
           // [END_EXCLUDE]
         }
         // [START_EXCLUDE silent]
-        document.getElementById('login-button').disabled = false;
+        //document.getElementById('login-button').disabled = false;
         // [END_EXCLUDE]
       });
       // [END authstatelistener]
-      document.getElementById('submit-login').addEventListener('click', toggleSignIn, false);
-      document.getElementById('submit-signup').addEventListener('click', handleSignUp, false);
+      // document.getElementById('submit-login').addEventListener('click', toggleSignIn, false);
+      // document.getElementById('submit-signup').addEventListener('click', handleSignUp, false);
       //document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
     }
     window.onload = function() {
@@ -180,12 +180,6 @@ $("#login-button").on("click", function(){
 $("#signup-button").on("click", function(){
 	$("#signup").css("display", "block");
 	$("#signup").css("width", "auto");
-	$("#login-button").prop("disabled",true);
-	firebase.auth().onAuthStateChanged(user => {
-    if(user) {
-      window.location = 'profile.html';
-      }
-    });
 });
 
 $("#submit-login").on("click", function(){
@@ -199,13 +193,14 @@ $("#submit-login").on("click", function(){
 });
 
 $("#submit-signup").on("click", function(){
+  console.log("click signup");
+  handleSignUp();
   firebase.auth().onAuthStateChanged(user => {
     if(user) {
       window.location = 'settings.html';
       }
     });
-  console.log("click signup");
-  handleSignUp();
+
 });
 
 $("#sign-out").on("click", function(){
@@ -218,6 +213,25 @@ $("#sign-out").on("click", function(){
       }
 
 });
+
+$("#profile").click(function(){
+        window.location = 'profile.html';
+        console.log("profile");
+});
+
+$("#explore").click(function(){
+        window.location = 'explore.html';
+});
+
+$("#message").click(function(){
+        window.location = 'lobby.html';
+});
+
+$("#setting").click(function(){
+        window.location = 'settings.html';
+        console.log("profile");
+});
+
 
 $(document).ready(function() {
 
