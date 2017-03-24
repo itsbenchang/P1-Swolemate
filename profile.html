@@ -19,9 +19,11 @@
     <div class="container">
         <div class="navbar-header">
             <a href="index.html" class="navbar-brand">Swolemates</a>
-            <button id="profile">Profile</button>
-            <button id="explore">Explore</button>
-            <button id="message">Messages <span class="badge" id="message-count"> 10</span></button>
+            <button class="header-button" id="profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
+            <button class="header-button" id="explore"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            <button class="header-button" id="message"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge" id="message-count"> 10</span></button>
+            <button href="settings.html" class="header-button" id="message"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+            <button class="header-button" id="sign-out">Sign Out</button>
         </div>
     </div>
 </header>
@@ -38,7 +40,9 @@
           <p class="asl-info" id="sex">GENDER: M /</p>
           <p class="asl-info" id="location">LOCATION: 91205</p> 
         </div>
-        <button id="add-friend">ADD FRIEND</button>
+        <div id="friend">
+          <button id="add-friend">ADD FRIEND</button>
+        </div>
 <!--           <div id="choose-photo">
             <div class="modal-body">
               <div class="container-fluid">
@@ -53,14 +57,26 @@
 
   </section>
   <section class="about">
-      <div id="bio" class="">
-        <div id="interest">Interests</div>
+      <div id="bio" class="panel panel-primary">
+        <div id="about" class="panel-heading"><h3>About</h3></div>
+        <div class="panel-body">Panel Content</div>
       </div>
+      <div id="bio" class="panel panel-primary">
+        <div id="interest" class="panel-heading"><h3>Interests</h3></div>
+        <div class="panel-body">Panel Content</div>
+      </div>  
   </section>
-  <section class="sidebar">
-  </section>
+  <div class="push"></div>
 </div>
 
+<footer class="footer navbar-fixed-bottom">
+      <p class="text-footer">
+      <a href = "about.html" id="about-us">About us</a>
+        &copy; Copyright Swol3 Team 6 
+      </p>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
 <script src="assets/javascript/script.js"></script>
 
 </body>

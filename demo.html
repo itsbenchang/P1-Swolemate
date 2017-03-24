@@ -41,6 +41,11 @@ limitations under the License.
     /**
      * Handles the sign in button press.
      */
+     firebase.auth().onAuthStateChanged(user => {
+    if(user) {
+      window.location = 'profile.html';
+      }
+    });
     function toggleSignIn() {
       if (firebase.auth().currentUser) {
         // [START signout]
