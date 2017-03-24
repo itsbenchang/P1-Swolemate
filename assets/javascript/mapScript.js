@@ -1,6 +1,6 @@
 //<script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
 // Initialize Firebase
-var config = {
+/*var config = {
     apiKey: "AIzaSyDxQ4YEmF_TY6huoWtT67y2Xj7Gw-0hyoM",
     authDomain: "swolemate-e6470.firebaseapp.com",
     databaseURL: "https://swolemate-e6470.firebaseio.com",
@@ -9,7 +9,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var database = firebase.database();
+var database = firebase.database();*/
 
 
 var map;
@@ -20,11 +20,18 @@ var userCenter = {
     lng: -118.4452
 }
 var userInterest = ["yoga", "martial arts"]
-var userInput = "";
+var userInput=[];
+var inputSelected = false;
 
-$("#checkbox").on("click",function(){
-	userInput = $(this).attr("value");
-	console.log(userInput);
+$(".checkbox").on("click", function() {
+
+    
+        userInput.push($(this).attr("value"));
+        console.log(userInput);
+        inputSelected = true;
+        console.log(inputSelected);
+   
+
 
 });
 
@@ -56,13 +63,18 @@ function initMap() {
     function populateMap() {
         var service = new google.maps.places.PlacesService(map);
         generateRadius();
-        console.log( userCenter)
-        service.textSearch({
-            location: userCenter,
-            radius: 8050,
-            query: 'bjj'
+        console.log(userCenter)
+        
+        for (var i = 0; i <= userInput.length; i++) {
+            console.log(userInput[i]);
+            service.textSearch({
+                location: userCenter,
+                radius: 8050,
+                query: userInput[i]
 
-        }, callback);
+            }, callback);   
+        }
+
     }
 
     function callback(results, status) {
@@ -76,7 +88,7 @@ function initMap() {
 
     function createMarker(place) {
         var placeLoc = place.geometry.location;
-        console.log(place);
+        
         var marker = new google.maps.Marker({
             map: map,
             position: place.geometry.location,
@@ -87,7 +99,7 @@ function initMap() {
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.setContent(place.name);
             infowindow.open(map, this);
-            console.log(place.geometry.location);
+            
         });
     }
 
@@ -97,7 +109,7 @@ function initMap() {
     //on click translate inputted zipcode to lat lng
     document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
-       
+
 
     });
     //generates circle

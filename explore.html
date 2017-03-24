@@ -17,7 +17,7 @@
     <!--firebase API -->
     <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
     <!-- Google maps API link-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcK-TsOybC31_rpTXwzCM3WB9cD5a2gQM&callback=initMap&libraries=geometry,places,drawing" async defer></script>
+   
     <style>
     #map {
         height: 100%;
@@ -25,8 +25,8 @@
     
     #floating-panel {
         position: absolute;
-        top: 100px;
-        left: 25%;
+        top: 120px;
+        
         z-index: 5;
         background-color: #fff;
         padding: 5px;
@@ -41,31 +41,34 @@
 
 <body>
     <header class="navbar navbar-static-top navbar-inverse bg-primary" id="top" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="index.html" class="navbar-brand">Swolemates</a>
-                <button id="profile">Profile</button>
-                <button id="explore">Explore</button>
-                <button id="message">Messages <span class="badge" id="message-count"> 10</span></button>
-            </div>
+    <div class="container">
+        <div class="navbar-header">
+            <a href="index.html" class="navbar-brand">Swolemates</a>
+            <button class="header-button" id="profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
+            <button class="header-button" id="explore"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            <button class="header-button" id="message"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge" id="message-count"> 10</span></button>
+            <button class="header-button" id="setting"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+            <button class="header-button" id="sign-out"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></button>
         </div>
-    </header>-
+    </div>
+</header>
     <div class="container">
         <div id="floating-panel">
             <form action="/action_page.php" method="get">
-                <ul><input type="checkbox" name="vehicle" value="Bike" id="checkbox"> yoga  </ul>
+                <ul><input type="checkbox" name="vehicle" value="Yoga" class="checkbox"> Yoga  </ul>
                 
-                <ul><input type="checkbox" name="vehicle" value="Car" id="checkbox">BJJ</ul>
+                <ul><input type="checkbox" name="vehicle" value="BJJ" class="checkbox">BJJ</ul>
 
             </form>
-            <input id="address" type="textbox" value="90025">
-            <input id="submit" type="button" value="Set Location">
-            <input id="radius" type="button" value="Search Interests">
+            <ul><input id="address" type="textbox" value="90025">
+            <ul><input id="submit" type="button" value="Set Location">
+            <ul><input id="radius" type="button" value="Search Interests">
         </div>
     </div>
     <div id="map"></div>
     <script src="assets/javascript/mapScript.js"></script>
-    <script src="assets/javascript/script.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcK-TsOybC31_rpTXwzCM3WB9cD5a2gQM&callback=initMap&libraries=geometry,places,drawing" async defer></script>
+    <!--<script src="assets/javascript/script.js"></script>-->
 </body>
 
 </html>
