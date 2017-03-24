@@ -20,6 +20,13 @@ var userCenter = {
     lng: -118.4452
 }
 var userInterest = ["yoga", "martial arts"]
+var userInput = "";
+
+$("#checkbox").on("click",function(){
+	userInput = $(this).attr("value");
+	console.log(userInput);
+
+});
 
 
 function initMap() {
@@ -49,10 +56,11 @@ function initMap() {
     function populateMap() {
         var service = new google.maps.places.PlacesService(map);
         generateRadius();
+        console.log( userCenter)
         service.textSearch({
             location: userCenter,
             radius: 8050,
-            query: 'cycling'
+            query: 'bjj'
 
         }, callback);
     }
