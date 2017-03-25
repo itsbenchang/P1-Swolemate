@@ -48,14 +48,14 @@ var uid, url;
       } else {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
-        if (email.length < 4) {
-          alert('Please enter an email address.');
-          return;
-        }
-        if (password.length < 4) {
-          alert('Please enter a password.');
-          return;
-        }
+        // if (email.length < 4) {
+        //   alert('Please enter an email address.');
+        //   return;
+        // }
+        // if (password.length < 4) {
+        //   alert('Please enter a password.');
+        //   return;
+        // }
         // Sign in with email and pass.
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -64,7 +64,7 @@ var uid, url;
           var errorMessage = error.message;
           // [START_EXCLUDE]
           if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
+            $("#password").html('Wrong password');
           } else {
             alert(errorMessage);
           }
@@ -81,14 +81,14 @@ var uid, url;
     function handleSignUp() {
       var email = document.getElementById('email-signup').value;
       var password = document.getElementById('password-signup').value;
-      if (email.length < 4) {
-        alert('Please enter an email address.');
-        return;
-      }
-      if (password.length < 4) {
-        alert('Please enter a password.');
-        return;
-      }
+      // if (email.length < 4) {
+      //   alert('Please enter an email address.');
+      //   return;
+      // }
+      // if (password.length < 4) {
+      //   alert('Please enter a password.');
+      //   return;
+      // }
       // Sign in with email and pass.
       // [START createwithemail]
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
@@ -97,12 +97,13 @@ var uid, url;
         var errorMessage = error.message;
         // [START_EXCLUDE]
         if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          alert(errorMessage);
+           $("#password-signup").html('The password is too weak.');
+        } 
+        else {
+
         }
         console.log(error);
-              initApp();
+        initApp();
 
         // [END_EXCLUDE]
       });
@@ -170,7 +171,7 @@ function handleFileSelect(evt) {
         console.error('Upload failed:', error);
         // [END onfailure]
       });
-      database.ref().child("/users").child(uid).update({
+      database.ref().child("/users").child(uid).push({
           photoURL: url
       });
       console.log(user.photoURL);
@@ -194,18 +195,18 @@ function initApp() {
           uid = user.uid;
           var providerData = user.providerData;
 
-        firebase.database().ref().child("/users").child(uid).update({
-                  age: age,
-                  zipcode : zipcode,
-                  name : displayName,
-                  photoURL : photoURL
-        });
+        // firebase.database().ref().child("/users").child(uid).set({
+        //           age: age,
+        //           zipcode : zipcode,
+        //           name : displayName,
+        //           photoURL : photoURL
+        // });
 
           database.ref().child("/users").child(uid).once('value', function(snapshot) {
-              $("#name").html(displayName);
+              $("#name").html(snapshot.name);
               $("#age").html(snapshot.age);
               $("#location").html(snapshot.zipcode);
-              $(".profile-pic").attr("src", photoURL);
+              //$(".profile-pic").attr("src", photoURL);
           });
 
           // [START_EXCLUDE]
@@ -277,6 +278,13 @@ $("#sign-out").on("click", function(){
 $("#profile").click(function(){
         window.location = 'profile.html';
         console.log("profile");
+  firebase.database().ref().child("/users/" + uid).once("value", function(snapshot) {
+          $("#name").html(snapshot.val().name);
+          $("#age").html(snapshot.val().age);
+          $("#location").html(snapshot.val().zipcode);
+          console.log(snapshot.val().name);
+          //$(".profile-pic").attr("src", snapshot.val().photoURL);
+  });
 });
 
 $("#explore").click(function(){
@@ -295,22 +303,22 @@ $("#setting").click(function(){
 $("#save-settings").click(function(){
   event.preventDefault();
 
+  about = $("#about-input").val().trim();
   name = $("#name-input").val().trim();
   age = $("#age-input").val().trim();
   zipcode = $("#zipcode-input").val().trim();
 
 
-  firebase.database().ref().child("/users").child(uid).update({
+  firebase.database().ref().child("/users").child(uid).set({
           name:name,
           age:age,
-          zipcode:zipcode;
+          zipcode:zipcode,
+          about : about
+  });
+
+  firebase.database().ref().child("/zipcode").update({
+          zipcode:zipcode
   });
 
 
-  firebase.database().ref().child("/users").child(uid).on("value", function(snapshot) {
-          //$("#name").html(displayName);
-          //$("#age").html(snapshot.age);
-          //$("#location").html(snapshot.zipcode);
-          $(".profile-pic").attr("src", snapshot.val().photoURL);
-  });
 });  
