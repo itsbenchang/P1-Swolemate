@@ -390,6 +390,11 @@ p{
 
 /* PROFILE CSS ***/
 
+.container{
+    display: flex;
+    justify-content: center;
+}
+
 .header-button{
     width:10%;
     min-width: 20px;
@@ -519,6 +524,12 @@ h3{
     height: 200px;
 }
 
+.form-control{
+    max-width: 600px;
+}
+
+
+/*^ SETTINGS ^*/
 
 /*FOOTER*/
 

@@ -35,6 +35,10 @@ $(function () {
 
  firebase.initializeApp(config);
 
+var database = firebase.database();
+var auth = firebase.auth().currentUser;
+var storageRef = firebase.storage().ref();
+var uid, url;
 
  function toggleSignIn() {
       if (firebase.auth().currentUser) {
@@ -98,8 +102,21 @@ $(function () {
           alert(errorMessage);
         }
         console.log(error);
+              initApp();
+
         // [END_EXCLUDE]
       });
+    //   var name, photoURL, age, zipcode, interest, about;
+      
+    //   firebase.database().ref().child("/users").child(uid).set({
+    //     name : name,
+    //     age: age,
+    //     zipcode : zipcode,
+    //     photoURL :photoURL,
+    //     email : email,
+    //     interest : interest,
+    //     about : about
+    // });  
       // [END createwithemail]
     }
 
@@ -127,38 +144,36 @@ $(function () {
       // [END sendpasswordemail];
     }
 
-    var auth = firebase.auth().currentUser;
-    var storageRef = firebase.storage().ref();
 
-    function handleFileSelect(evt) {
+
+function handleFileSelect(evt) {
       evt.stopPropagation();
       evt.preventDefault();
       var file = evt.target.files[0];
       var metadata = {
         'contentType': file.type
       };
+
       // Push to child path.
       // [START oncomplete]
       storageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
         console.log('Uploaded', snapshot.totalBytes, 'bytes.');
         console.log(snapshot.metadata);
-        var url = snapshot.downloadURL;
+        url = snapshot.downloadURL;
         console.log('File available at', url);
         // [START_EXCLUDE]
         // [END_EXCLUDE]
         $("#image-profile").attr("src", url);
+        $("#image").attr("src",url);
       }).catch(function(error) {
         // [START onfailure]
         console.error('Upload failed:', error);
         // [END onfailure]
       });
-      user.updateProfile({
-      photoURL: url
-      }).then(function() {
-      // Update successful.
-      }, function(error) {
-      // An error happened.
+      database.ref().child("/users").child(uid).update({
+          photoURL: url
       });
+      console.log(user.photoURL);
       // [END oncomplete]
 }
 
@@ -168,7 +183,6 @@ function initApp() {
       // [START authstatelistener]
       firebase.auth().onAuthStateChanged(function(user) {
         // [START_EXCLUDE silent]
-        // document.getElementById('quickstart-verify-email').disabled = true;
         // [END_EXCLUDE]
         if (user) {
           // User is signed in.
@@ -177,40 +191,34 @@ function initApp() {
           var emailVerified = user.emailVerified;
           var photoURL = user.photoURL;
           var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
+          uid = user.uid;
           var providerData = user.providerData;
 
+        firebase.database().ref().child("/users").child(uid).update({
+                  age: age,
+                  zipcode : zipcode,
+                  name : displayName,
+                  photoURL : photoURL
+        });
 
-          firebase.database().ref().child("/users").child(uid).update({
-            displayName : displayName,
-            email : email,
-            photoURL : photoURL,
+          database.ref().child("/users").child(uid).once('value', function(snapshot) {
+              $("#name").html(displayName);
+              $("#age").html(snapshot.age);
+              $("#location").html(snapshot.zipcode);
+              $(".profile-pic").attr("src", photoURL);
           });
-          
-          firebase.database().ref().child("/users").child(uid);
 
-          firebase.database().ref().child(uid).once('value', function(snapshot) {
-            
-            // ...
-          });
           // [START_EXCLUDE]
-          //document.getElementById('login-button').textContent = 'Sign out';
           // [END_EXCLUDE]
         } else {
           // User is signed out.
           // [START_EXCLUDE]
-          //document.getElementById('login-button').textContent = 'Log in';
-          // document.getElementById('quickstart-account-details').textContent = 'null';
           // [END_EXCLUDE]
         }
         // [START_EXCLUDE silent]
-        //document.getElementById('login-button').disabled = false;
         // [END_EXCLUDE]
       });
       // [END authstatelistener]
-      // document.getElementById('submit-login').addEventListener('click', toggleSignIn, false);
-      // document.getElementById('submit-signup').addEventListener('click', handleSignUp, false);
-      //document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
     }
     window.onload = function() {
       initApp();
@@ -286,34 +294,23 @@ $("#setting").click(function(){
 
 $("#save-settings").click(function(){
   event.preventDefault();
+
   name = $("#name-input").val().trim();
-  email = $("#email-input").val().trim();
   age = $("#age-input").val().trim();
-  comment = $("#comment-input").val().trim();
-});
+  zipcode = $("#zipcode-input").val().trim();
 
 
-// $(document).ready(function() {
-    
-//     var readURL = function(input) {
-//         if (input.files && input.files[0]) {
-//             var reader = new FileReader();
-
-//             reader.onload = function (e) {
-//                 $('.profile-pic').attr('src', e.target.result);
-//             }
-//             reader.readAsDataURL(input.files[0]);
-//         }
-//     }
-    
-
-//     $(".file-upload").on('change', function(){
-//         readURL(this);
-//     });
-    
-//     // $(".upload-button").on('click', function() {
-//     //    $(".file-upload").click();
-//     // });
-// });
+  firebase.database().ref().child("/users").child(uid).update({
+          name:name,
+          age:age,
+          zipcode:zipcode;
+  });
 
 
+  firebase.database().ref().child("/users").child(uid).on("value", function(snapshot) {
+          //$("#name").html(displayName);
+          //$("#age").html(snapshot.age);
+          //$("#location").html(snapshot.zipcode);
+          $(".profile-pic").attr("src", snapshot.val().photoURL);
+  });
+});  
