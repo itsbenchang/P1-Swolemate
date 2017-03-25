@@ -580,6 +580,10 @@ main{
     font-weight: bold;
 }
 
+.navbar-brand{
+    margin-top: 4px;
+}
+
 #friend{
     background-color: black;
     width: 100%;
