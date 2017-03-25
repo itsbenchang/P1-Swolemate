@@ -24,7 +24,8 @@
     
     #floating-panel {
         position: absolute;
-        top: 120px;
+        top: 105px;
+        left:0;
         z-index: 5;
         background-color: #fff;
         padding: 5px;
@@ -34,6 +35,28 @@
         line-height: 30px;
         padding-left: 10px;
     }
+
+    input[type=button]{
+        width:100px;
+        text-align: center;
+    }
+
+    #address{
+        width:120px;
+        margin-bottom: 10px;
+    }
+
+    #set{
+        width:120px;
+        margin-bottom: 10px;
+        background-color: #5cb85c;
+    }
+
+    #clear{
+        width:120px;
+        background-color: #d9534f;
+    }
+
     </style>
 </head>
 
@@ -93,6 +116,15 @@
         </div>
     </div>
     <div id="map"></div>
+<div class="push"></div>
+ <footer class="footer navbar-fixed-bottom">
+       <div class="text-footer">
+         <a href = "about.html" id="about-us">About us</a>
+          &copy; Copyright Swol3 Team 6 
+       </p>
+       </div>
+  </footer>
+
     <script src="assets/javascript/mapScript.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcK-TsOybC31_rpTXwzCM3WB9cD5a2gQM&callback=initMap&libraries=geometry,places,drawing" async defer></script>
