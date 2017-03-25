@@ -126,6 +126,43 @@ $(function () {
       });
       // [END sendpasswordemail];
     }
+
+    var auth = firebase.auth().currentUser;
+    var storageRef = firebase.storage().ref();
+
+    function handleFileSelect(evt) {
+      evt.stopPropagation();
+      evt.preventDefault();
+      var file = evt.target.files[0];
+      var metadata = {
+        'contentType': file.type
+      };
+      // Push to child path.
+      // [START oncomplete]
+      storageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
+        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+        console.log(snapshot.metadata);
+        var url = snapshot.downloadURL;
+        console.log('File available at', url);
+        // [START_EXCLUDE]
+        // [END_EXCLUDE]
+        $("#image-profile").attr("src", url);
+      }).catch(function(error) {
+        // [START onfailure]
+        console.error('Upload failed:', error);
+        // [END onfailure]
+      });
+      user.updateProfile({
+      photoURL: url
+      }).then(function() {
+      // Update successful.
+      }, function(error) {
+      // An error happened.
+      });
+      // [END oncomplete]
+}
+
+
 function initApp() {
       // Listening for auth state changes.
       // [START authstatelistener]
@@ -142,6 +179,20 @@ function initApp() {
           var isAnonymous = user.isAnonymous;
           var uid = user.uid;
           var providerData = user.providerData;
+
+
+          firebase.database().ref().child("/users").child(uid).update({
+            displayName : displayName,
+            email : email,
+            photoURL : photoURL,
+          });
+          
+          firebase.database().ref().child("/users").child(uid);
+
+          firebase.database().ref().child(uid).once('value', function(snapshot) {
+            
+            // ...
+          });
           // [START_EXCLUDE]
           //document.getElementById('login-button').textContent = 'Sign out';
           // [END_EXCLUDE]
@@ -163,6 +214,7 @@ function initApp() {
     }
     window.onload = function() {
       initApp();
+      document.getElementById('file').addEventListener('change', handleFileSelect, false);
     };
 
 
@@ -224,7 +276,7 @@ $("#explore").click(function(){
 });
 
 $("#message").click(function(){
-        window.location = 'lobby.html';
+        window.location = 'chat.html';
 });
 
 $("#setting").click(function(){
@@ -232,29 +284,36 @@ $("#setting").click(function(){
         console.log("profile");
 });
 
-
-$(document).ready(function() {
-
-    
-    var readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('.profile-pic').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-
-    $(".file-upload").on('change', function(){
-        readURL(this);
-    });
-    
-    // $(".upload-button").on('click', function() {
-    //    $(".file-upload").click();
-    // });
+$("#save-settings").click(function(){
+  event.preventDefault();
+  name = $("#name-input").val().trim();
+  email = $("#email-input").val().trim();
+  age = $("#age-input").val().trim();
+  comment = $("#comment-input").val().trim();
 });
+
+
+// $(document).ready(function() {
+    
+//     var readURL = function(input) {
+//         if (input.files && input.files[0]) {
+//             var reader = new FileReader();
+
+//             reader.onload = function (e) {
+//                 $('.profile-pic').attr('src', e.target.result);
+//             }
+//             reader.readAsDataURL(input.files[0]);
+//         }
+//     }
+    
+
+//     $(".file-upload").on('change', function(){
+//         readURL(this);
+//     });
+    
+//     // $(".upload-button").on('click', function() {
+//     //    $(".file-upload").click();
+//     // });
+// });
 
 
