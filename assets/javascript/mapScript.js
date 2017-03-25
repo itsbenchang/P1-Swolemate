@@ -23,7 +23,7 @@ var userInterest = ["yoga", "martial arts"]
 var userInput = [];
 var inputSelected = false;
 var markers = [];
-var centerMarkers =[];
+var centerMarkers = [];
 
 
 
@@ -111,9 +111,9 @@ function initMap() {
         //set content on click
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.setContent(
-                '<h2>'+place.name+'</h2>' +" "+ place.formatted_address);
+                '<h2>' + place.name + '</h2>' + " " + place.formatted_address);
             infowindow.open(map, this);
- 
+
         });
         markers.push(marker);
 
