@@ -633,7 +633,6 @@ h3{
 }
 /* ^ PROFILE CSS ^ */
 
-<<<<<<< HEAD
 
 /* SETTINGS */
 
@@ -649,19 +648,17 @@ h3{
 
 /*^ SETTINGS ^*/
 
-=======
->>>>>>> 6069cb0fcec8182327b14273ec25210b264e17dd
 /*FOOTER*/
 
 .footer,
 .push{
     height:60px;
-    background-color:#797878;
+    background-color:black;
     justify-content: center;
 }
 
 .text-footer{
-    color:black;
+    color:white;
     width: 100%;
     padding-top: 20px;
     text-align: center;
