@@ -106,11 +106,14 @@ function initMap() {
             position: place.geometry.location,
             animation: google.maps.Animation.DROP
         });
+        console.log(place);
+
         //set content on click
         google.maps.event.addListener(marker, 'click', function() {
-            infowindow.setContent(place.name);
+            infowindow.setContent(
+                '<h2>'+place.name+'</h2>' +" "+ place.formatted_address);
             infowindow.open(map, this);
-
+ 
         });
         markers.push(marker);
 
@@ -161,6 +164,7 @@ function initMap() {
     function deleteMarkers() {
         clearMarkers();
         markers = [];
+
     }
     /////////////////////////////////////////////////////////////////////////////////////
     ///////Create circle object ///////////////////////////////////////////////////////////////////////
