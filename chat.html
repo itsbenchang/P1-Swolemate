@@ -1,7 +1,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="UTF-8">
-	<title>Swole Lobby</title>
+	<title>Swole Chat</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport">
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
     <link href="assets/css/reset.css" rel="stylesheet" type="text/css">
@@ -47,6 +47,8 @@
                     <div class="channel" id="dating">Dating</div>
                     <div class="channel" id="eating">Eating</div>
                     <div class="channel" id="activities">Activities</div>
+                    <div class="channel" id="lifting">Lifting</div>
+                    <div class="channel" id="mma">MMA</div>
                 </div>
 			</div>
 		    <div class="col-sm-9 messagewindow">
@@ -67,7 +69,7 @@
 			                	<input type="text" name="message" id='message-input'>
 			            	</div>
 			              	<div class="col-xs-2 chatButton">
-			                	<button id='send'><span class="glyphicon glyphicon-send"></span></button>
+			                	<button class="btn" id='send'><span class="glyphicon glyphicon-send"></span></button>
 			            	</div>
 			            </div>
 		            </div>
@@ -78,7 +80,42 @@
 
 </div>
 
-<script src="assets/javascript/lobbyscript.js"></script>
+<div class="chatModal" id="myModalNorm" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                    Welcome to Swole Chat!
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">        
+                <form role="form">
+                	<div class="form-group">
+	                    <label for="exampleInputEmail1">Username</label>
+	                    <input type="email" class="form-control" id="chatusername" placeholder="Enter Name"/>
+                	</div>
+                </form>   
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+            	<div class="row">
+            		<div class="col-xs-4">
+            			<button class="btn btn-default" id="chatcancel">Cancel</button>
+	                </div>
+					<div class="col-xs-8">
+	                	<button type="button" class="btn btn-primary" id="chat-name-submit">Submit</button>
+	                </div>
+	            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/javascript/chat.js"></script>
 
 </body>
 
