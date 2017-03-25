@@ -17,6 +17,10 @@
     <!--firebase API -->
     <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
     <!-- Google maps API link-->
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 6069cb0fcec8182327b14273ec25210b264e17dd
     <style>
     #map {
         height: 100%;
@@ -24,8 +28,8 @@
     
     #floating-panel {
         position: absolute;
-        top: 100px;
-        left: 25%;
+        top: 120px;
+        
         z-index: 5;
         background-color: #fff;
         padding: 5px;
@@ -39,6 +43,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <!-- <header class="navbar navbar-static-top navbar-inverse bg-primary" id="top" role="banner">
         <div class="container">
             <div class="navbar-header">
@@ -61,23 +66,25 @@
         </div>
     </div>
     </header>
+
     <div class="container">
         <div id="floating-panel">
             <form action="/action_page.php" method="get">
-                <ul><input type="checkbox" name="vehicle" value="Bike" id="checkbox"> yoga  </ul>
-                
-                <ul><input type="checkbox" name="vehicle" value="Car" id="checkbox">BJJ</ul>
+                <ul><input type="button" value="Yoga" class="checkbox" switch="off"></ul>
+                <ul><input type="button" value="Gym" class="checkbox" switch="off"> </ul>
+                <ul><input type="button" value="BJJ" class="checkbox" switch="off"></ul>
 
             </form>
-            <input id="address" type="textbox" value="90025">
-            <input id="submit" type="button" value="Set Location">
-            <input id="radius" type="button" value="Search Interests">
+            <ul><input id="address" type="textbox" value="90025">
+            <ul><input id="set" type="button" value="Set Location">
+            <ul><input id="clear" type="button" value="Clear Markers">
         </div>
     </div>
     <div id="map"></div>
     <script src="assets/javascript/mapScript.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcK-TsOybC31_rpTXwzCM3WB9cD5a2gQM&callback=initMap&libraries=geometry,places,drawing" async defer></script>
-    <!-- <script src="assets/javascript/script.js"></script> -->
+
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcK-TsOybC31_rpTXwzCM3WB9cD5a2gQM&callback=initMap&libraries=geometry,places,drawing" async defer></script>
+    <script src="assets/javascript/script.js"></script>
 </body>
 
 </html>

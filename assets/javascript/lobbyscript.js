@@ -1,10 +1,10 @@
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyCqu0vQlmbSOFk5U4UVmJaW1_ytFhm8mbw",
-    authDomain: "fb-chatroom.firebaseapp.com",
-    databaseURL: "https://fb-chatroom.firebaseio.com",
-    storageBucket: "fb-chatroom.appspot.com",
-    messagingSenderId: "482504856972"
+    apiKey: "AIzaSyDxQ4YEmF_TY6huoWtT67y2Xj7Gw-0hyoM",
+    authDomain: "swolemate-e6470.firebaseapp.com",
+    databaseURL: "https://swolemate-e6470.firebaseio.com",
+    storageBucket: "swolemate-e6470.appspot.com",
+    messagingSenderId: "771999306115"
 };
 firebase.initializeApp(config);
 
@@ -12,9 +12,10 @@ firebase.initializeApp(config);
 //                             Run this when ever the data object is updated.
 //                             For Firebase, add it as a callback to an on value change once
 
-var chatroom = firebase.database().ref('hackers');
+var chatroom = firebase.database().ref().child("/chat");
+var lobby = firebase.database().ref().child("/chat").child("/lobby");
 
-chatroom.on('value', function (snapshot) {
+lobby.on('value', function (snapshot) {
     updateUI(snapshot.val())
 });
 
@@ -29,7 +30,7 @@ $("#send").click(function () {
     var time = new Date().toLocaleTimeString();
 
     //push the new message object into Firebase using the reference variable
-    chatroom.push({
+    lobby.push({
         username: curUser,
         message: message,
         time: time
@@ -82,3 +83,22 @@ function updateUI(messages) {
 
     scrollToBottom();
 }
+
+fixSize();
+$(window).resize(function() {
+    fixSize();
+});
+
+function fixSize() {
+    // Home position
+    var windowHeight = ($(window).height() - 146);
+    // var windowWidth = $(window).width();
+    var chatChannelHeight = 
+    $('#chatcontent').css('height', windowHeight);
+    $('.messages').css('height', windowHeight);
+    $('.lobbychannels').css('height', windowHeight);
+    $('.chatchannels').css('height', (windowHeight - 62));
+    //$('#home h1').each(function() {
+        // $(this).css('padding-top', ($(this).parent().height() - $(this).height()) / 2);
+    // });
+};

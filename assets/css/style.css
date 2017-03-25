@@ -53,7 +53,6 @@ button:hover {
     position: relative;
 }
 
-
 img.avatar {
     width: 30%;
     border-radius: 50%;
@@ -197,9 +196,42 @@ p{
     .cancelbtn {
        width: 100%;
     }
+
+	#chatheader {
+	   position:fixed;
+	   top: 0;
+	   left: 0;
+	   right: 0;
+	   /*height: 75px;*/
+	   width:100%;
+	}
+
+	#chatfooter {
+	   position:fixed;
+	   left:0px;
+	   bottom:0px;
+	   height: 80px;
+	   width:100%;
+	}
+
+	#chatcontent {
+	    position: fixed;
+	    top: 66px;
+	    bottom: 80px;
+	    left: 0;
+	    right: 0;
+	    overflow: auto;
+	}
+
+  #send {
+      font-size: 4vmin;
+      text-align: center;
+      padding: 0px;
+  }
+
 }
 
-/*Formatting swole lobby -----------------------------------*/
+/*Formatting swole lobby -----------------------------------------------------*/
 .messages {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1px;
@@ -207,10 +239,6 @@ p{
           flex: 1 1px;
   background: #F1F5F8;
   overflow-y: scroll;
-  /*margin-top: 75px;*/
-
-  /*height: auto;*/
-  /*max-height: 45vw;*/
 }
 .messages ul {
   list-style: none;
@@ -238,23 +266,23 @@ p{
 }
 
 .messages .li-left {
-    /*border-bottom-left-radius: 2px;*/
     background-color: #1b85e4;
 }
 
 .messages .li-right {
   float: right;
-  /*border-bottom-right-radius: 2px;*/
   background: #87BB71;
 }
 
 .messagewindow {
     padding-left: 0px !important;
     padding-right: 0px !important;
+    /*border-right: 3px solid #d2d2d2;*/
 }
 
-.form {
+.chatForm {
   background: gainsboro;
+  border-top: 2px solid #d2d2d2;
 }
 
 .form-inner {
@@ -295,6 +323,11 @@ p{
     padding-right: 0px !important;
 }
 
+.chatMessages {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
 .chatWindow {
     margin-left: 0px !important;
     margin-right: 0px !important;
@@ -302,45 +335,126 @@ p{
 }
 
 .linebottom {
-    border-bottom: 2px solid #eaeaea;
+    border-bottom: 2px solid #d2d2d2
 }
 
 .linetop {
     border-top: 2px solid #eaeaea;
 }
-.swoleLobby {
-    /*height: 120%;*/
-    /*min-height: 100%;*/
-}
 
 #chatheader {
-   position:fixed;
-   top: 0;
-   left: 0;
-   right: 0;
-   height: 75px;
-   width:100%;
-}
-
-#chatfooter {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height: 80px;
-   width:100%;
+	position:fixed;
+	top: 0;
+	left: 15%;
+	right: 15%;
+	height: 75px;
+    margin: 0px !important;
 }
 
 #chatcontent {
     position: fixed;
-    top: 75px;
+    top: 66px;
     bottom: 80px;
-    left: 0;
-    right: 0;
-    background-color: #F63;
-    overflow: auto;
+    left: 15%;
+    right: 15%;
+    height:100vh;
+    overflow: hidden;
 }
 
-.main{
+<<<<<<< HEAD
+#chatfooter {
+    position:fixed;
+    left: 15%;
+    right: 15%;
+    bottom:0px;
+    height: 80px;
+}
+
+#send {
+    font-size: 4vmin;
+    text-align: center;
+}
+
+#channelHeader {
+    padding: 5px 0px 5px 0px;
+    margin: 0px;
+    background-image: linear-gradient(to bottom,#636363 0,#505050 100%);
+    border-bottom: 3px solid #a5a5a5;
+}
+
+#channelText {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px !important;
+}
+
+.chatchannels {
+    background: whitesmoke;
+    height: 200px;
+}
+
+.lobbychannels {
+    padding: 0px !important;
+    border-right: 3px solid #d2d2d2;
+    /*border-left: 3px solid #d2d2d2;*/
+}
+
+.lobbynav {
+    margin: 0px !important;
+}
+
+.channel {
+    font-size: 3vh;
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #d2d2d2;;
+}
+
+@media (max-width: 576px) {
+  #chatheader {
+        position:fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 75px;
+        width:100%;
+  }
+
+    #chatfooter {
+        position:fixed;
+        left:0px;
+        bottom:0px;
+        height: 80px;
+        width:100%;
+    }
+
+    #chatcontent {
+        position: fixed;
+        top: 66px;
+        bottom: 80px;
+        left: 0;
+        right: 0;
+        overflow: auto;
+    }
+
+    #send {
+        font-size: 6vmin;
+        text-align: center;
+        padding: 0px;
+    }
+
+}
+
+/* ------End of lobby css ------------------------------------------------*/
+
+/* About Us Page */
+.about-us-pic {
+  max-height: 60vh;
+}
+
+main{
     width:100%;
     min-height:100%;
     background-color: gray;
@@ -386,7 +500,6 @@ p{
     text-align: center;
     display: inline-block;
 }
-
 
 /* PROFILE CSS ***/
 
@@ -511,7 +624,6 @@ h3{
     margin-top: 70px;
 }
 
-
 .panel-body{
 }
 
@@ -521,6 +633,7 @@ h3{
 }
 /* ^ PROFILE CSS ^ */
 
+<<<<<<< HEAD
 
 /* SETTINGS */
 
@@ -536,6 +649,8 @@ h3{
 
 /*^ SETTINGS ^*/
 
+=======
+>>>>>>> 6069cb0fcec8182327b14273ec25210b264e17dd
 /*FOOTER*/
 
 .footer,
@@ -553,5 +668,3 @@ h3{
 }
 
 /*^ FOOTER^*/
-
-
