@@ -510,6 +510,11 @@ main{
 
 /* PROFILE CSS ***/
 
+.container{
+    display: flex;
+    justify-content: center;
+}
+
 .header-button{
     width:10%;
     min-width: 20px;
@@ -628,19 +633,39 @@ h3{
 
 .panel-body{
 }
+
+.icons{
+    width: 100px;
+    height: 100px;
+}
 /* ^ PROFILE CSS ^ */
+
+
+/* SETTINGS */
+
+#image-profile{
+    width: 200px;
+    height: 200px;
+}
+
+.form-control{
+    max-width: 600px;
+}
+
+
+/*^ SETTINGS ^*/
 
 /*FOOTER*/
 
 .footer,
 .push{
     height:60px;
-    background-color:#797878;
+    background-color:black;
     justify-content: center;
 }
 
 .text-footer{
-    color:black;
+    color:white;
     width: 100%;
     padding-top: 20px;
     text-align: center;

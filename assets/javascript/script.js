@@ -35,6 +35,10 @@ $(function () {
 
  firebase.initializeApp(config);
 
+var database = firebase.database();
+var auth = firebase.auth().currentUser;
+var storageRef = firebase.storage().ref();
+var uid, url;
 
  function toggleSignIn() {
       if (firebase.auth().currentUser) {
@@ -44,14 +48,14 @@ $(function () {
       } else {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
-        if (email.length < 4) {
-          alert('Please enter an email address.');
-          return;
-        }
-        if (password.length < 4) {
-          alert('Please enter a password.');
-          return;
-        }
+        // if (email.length < 4) {
+        //   alert('Please enter an email address.');
+        //   return;
+        // }
+        // if (password.length < 4) {
+        //   alert('Please enter a password.');
+        //   return;
+        // }
         // Sign in with email and pass.
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -60,7 +64,7 @@ $(function () {
           var errorMessage = error.message;
           // [START_EXCLUDE]
           if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
+            $("#password").html('Wrong password');
           } else {
             alert(errorMessage);
           }
@@ -77,14 +81,14 @@ $(function () {
     function handleSignUp() {
       var email = document.getElementById('email-signup').value;
       var password = document.getElementById('password-signup').value;
-      if (email.length < 4) {
-        alert('Please enter an email address.');
-        return;
-      }
-      if (password.length < 4) {
-        alert('Please enter a password.');
-        return;
-      }
+      // if (email.length < 4) {
+      //   alert('Please enter an email address.');
+      //   return;
+      // }
+      // if (password.length < 4) {
+      //   alert('Please enter a password.');
+      //   return;
+      // }
       // Sign in with email and pass.
       // [START createwithemail]
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
@@ -93,13 +97,27 @@ $(function () {
         var errorMessage = error.message;
         // [START_EXCLUDE]
         if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          alert(errorMessage);
+           $("#password-signup").html('The password is too weak.');
+        } 
+        else {
+
         }
         console.log(error);
+        initApp();
+
         // [END_EXCLUDE]
       });
+    //   var name, photoURL, age, zipcode, interest, about;
+      
+    //   firebase.database().ref().child("/users").child(uid).set({
+    //     name : name,
+    //     age: age,
+    //     zipcode : zipcode,
+    //     photoURL :photoURL,
+    //     email : email,
+    //     interest : interest,
+    //     about : about
+    // });  
       // [END createwithemail]
     }
 
@@ -126,12 +144,46 @@ $(function () {
       });
       // [END sendpasswordemail];
     }
+
+
+
+function handleFileSelect(evt) {
+      evt.stopPropagation();
+      evt.preventDefault();
+      var file = evt.target.files[0];
+      var metadata = {
+        'contentType': file.type
+      };
+
+      // Push to child path.
+      // [START oncomplete]
+      storageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
+        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+        console.log(snapshot.metadata);
+        url = snapshot.downloadURL;
+        console.log('File available at', url);
+        // [START_EXCLUDE]
+        // [END_EXCLUDE]
+        $("#image-profile").attr("src", url);
+        $("#image").attr("src",url);
+      }).catch(function(error) {
+        // [START onfailure]
+        console.error('Upload failed:', error);
+        // [END onfailure]
+      });
+      database.ref().child("/users").child(uid).push({
+          photoURL: url
+      });
+      console.log(user.photoURL);
+      // [END oncomplete]
+}
+
+
 function initApp() {
       // Listening for auth state changes.
       // [START authstatelistener]
       firebase.auth().onAuthStateChanged(function(user) {
         // [START_EXCLUDE silent]
-        // document.getElementById('quickstart-verify-email').disabled = true;
         // [END_EXCLUDE]
         if (user) {
           // User is signed in.
@@ -140,29 +192,38 @@ function initApp() {
           var emailVerified = user.emailVerified;
           var photoURL = user.photoURL;
           var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
+          uid = user.uid;
           var providerData = user.providerData;
+
+        // firebase.database().ref().child("/users").child(uid).set({
+        //           age: age,
+        //           zipcode : zipcode,
+        //           name : displayName,
+        //           photoURL : photoURL
+        // });
+
+          database.ref().child("/users").child(uid).once('value', function(snapshot) {
+              $("#name").html(snapshot.name);
+              $("#age").html(snapshot.age);
+              $("#location").html(snapshot.zipcode);
+              //$(".profile-pic").attr("src", photoURL);
+          });
+
           // [START_EXCLUDE]
-          //document.getElementById('login-button').textContent = 'Sign out';
           // [END_EXCLUDE]
         } else {
           // User is signed out.
           // [START_EXCLUDE]
-          //document.getElementById('login-button').textContent = 'Log in';
-          // document.getElementById('quickstart-account-details').textContent = 'null';
           // [END_EXCLUDE]
         }
         // [START_EXCLUDE silent]
-        //document.getElementById('login-button').disabled = false;
         // [END_EXCLUDE]
       });
       // [END authstatelistener]
-      // document.getElementById('submit-login').addEventListener('click', toggleSignIn, false);
-      // document.getElementById('submit-signup').addEventListener('click', handleSignUp, false);
-      //document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
     }
     window.onload = function() {
       initApp();
+      document.getElementById('file').addEventListener('change', handleFileSelect, false);
     };
 
 
@@ -217,6 +278,13 @@ $("#sign-out").on("click", function(){
 $("#profile").click(function(){
         window.location = 'profile.html';
         console.log("profile");
+  firebase.database().ref().child("/users/" + uid).once("value", function(snapshot) {
+          $("#name").html(snapshot.val().name);
+          $("#age").html(snapshot.val().age);
+          $("#location").html(snapshot.val().zipcode);
+          console.log(snapshot.val().name);
+          //$(".profile-pic").attr("src", snapshot.val().photoURL);
+  });
 });
 
 $("#explore").click(function(){
@@ -224,7 +292,7 @@ $("#explore").click(function(){
 });
 
 $("#message").click(function(){
-        window.location = 'lobby.html';
+        window.location = 'chat.html';
 });
 
 $("#setting").click(function(){
@@ -232,29 +300,25 @@ $("#setting").click(function(){
         console.log("profile");
 });
 
+$("#save-settings").click(function(){
+  event.preventDefault();
 
-$(document).ready(function() {
-
-    
-    var readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('.profile-pic').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-
-    $(".file-upload").on('change', function(){
-        readURL(this);
-    });
-    
-    // $(".upload-button").on('click', function() {
-    //    $(".file-upload").click();
-    // });
-});
+  about = $("#about-input").val().trim();
+  name = $("#name-input").val().trim();
+  age = $("#age-input").val().trim();
+  zipcode = $("#zipcode-input").val().trim();
 
 
+  firebase.database().ref().child("/users").child(uid).set({
+          name:name,
+          age:age,
+          zipcode:zipcode,
+          about : about
+  });
+
+  firebase.database().ref().child("/zipcode").update({
+          zipcode:zipcode
+  });
+
+
+});  
