@@ -216,7 +216,7 @@ p{
 
 	#chatcontent {
 	    position: fixed;
-	    top: 66px;
+	    top: 50px;
 	    bottom: 80px;
 	    left: 0;
 	    right: 0;
@@ -353,7 +353,7 @@ p{
 
 #chatcontent {
     position: fixed;
-    top: 66px;
+    top: 50px;
     bottom: 80px;
     left: 15%;
     right: 15%;
@@ -361,7 +361,6 @@ p{
     overflow: hidden;
 }
 
-<<<<<<< HEAD
 #chatfooter {
     position:fixed;
     left: 15%;
@@ -386,7 +385,7 @@ p{
     text-align: center;
     font-weight: bold;
     color: white;
-    margin-top: 10px !important;
+    margin-top: 0px !important;
 }
 
 .chatchannels {
@@ -412,6 +411,14 @@ p{
     border-bottom: 1px solid #d2d2d2;;
 }
 
+.channel-hover {
+    background: #dcdcdc
+}
+
+.highlight {
+    background: #bbb;
+}
+
 @media (max-width: 576px) {
   #chatheader {
         position:fixed;
@@ -432,7 +439,7 @@ p{
 
     #chatcontent {
         position: fixed;
-        top: 66px;
+        top: 50px;
         bottom: 80px;
         left: 0;
         right: 0;
