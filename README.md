@@ -1,5 +1,5 @@
 # Project 1: Swolemate
-Finding a person to be swole with you!
+Make friends. Get swole.
 
 ## Live Link
 - https://benjinchang.github.io/P1-Swolemate/
@@ -30,21 +30,20 @@ Finding a person to be swole with you!
 - AJAX
 
 ## Code Explaination
-- Authentication
-Using authorization methods to create a new user from firebase. Using an email address and password.
-Saves new user in the authentication tab.
-Create a new user object. Saves information under user ID. User ID is linked to their profile information.
+Authentication
+- Using authorization methods to create a new user from firebase. Using an email address and password.
+- Saves new user in the authentication tab.
+- Create a new user object. Saves information under user ID. User ID is linked to their profile information.
 
-- Explorer Page
-Google maps and Google places API
+Explorer Page
+- Google maps and Google places API
+- User Location specified and stored in firebase database.
+- Google map API geocoder to convert zipcode to return lat/lng coordinates to manipulate on map
+- We use zipcode in order to return to user # of users in his/her area. Seems like easiest way to organize users for the time being. 
+- From user interest we have a checklist of individual activities. Which the user can select to display on the map
 
-User Location specified and stored in firebase database.
-Google map API geocoder to convert zipcode to return lat/lng coordinates to manipulate on map
-We use zipcode in order to return to user # of users in his/her area. Seems like easiest way to organize users for the time being. 
-From user interest we have a checklist of individual activities. Which the user can select to display on the map
+- After selection, the google places library will populate area around user location for selected interests. From here, users can grab an idea/gym/store to suggest to other swolemates.
+- On Click, the user will be able to see details on the markers placed.
 
-After selection, the google places library will populate area around user location for selected interests. From here, users can grab an idea/gym/store to suggest to other swolemates.
-On Click, the user will be able to see details on the markers placed.
-
-- Swole Chat
-User will be able to chat to other swollies about varioues topics and ideas. The swole chat has multiple channels for various topics.
+Swole Chat
+- User will be able to chat to other swollies about varioues topics and ideas. The swole chat has multiple channels for various topics.
