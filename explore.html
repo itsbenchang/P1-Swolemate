@@ -55,20 +55,20 @@
     <div class="container">
         <div id="floating-panel">
             <form action="/action_page.php" method="get">
-                <ul><input type="checkbox" name="vehicle" value="Yoga" class="checkbox"> Yoga  </ul>
-                
-                <ul><input type="checkbox" name="vehicle" value="BJJ" class="checkbox">BJJ</ul>
+                <ul><input type="button" value="Yoga" class="checkbox" switch="off"></ul>
+                <ul><input type="button" value="Gym" class="checkbox" switch="off"> </ul>
+                <ul><input type="button" value="BJJ" class="checkbox" switch="off"></ul>
 
             </form>
             <ul><input id="address" type="textbox" value="90025">
-            <ul><input id="submit" type="button" value="Set Location">
-            <ul><input id="radius" type="button" value="Search Interests">
+            <ul><input id="set" type="button" value="Set Location">
+            <ul><input id="clear" type="button" value="Clear Markers">
         </div>
     </div>
     <div id="map"></div>
     <script src="assets/javascript/mapScript.js"></script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcK-TsOybC31_rpTXwzCM3WB9cD5a2gQM&callback=initMap&libraries=geometry,places,drawing" async defer></script>
-    <!--<script src="assets/javascript/script.js"></script>-->
+    <script src="assets/javascript/script.js"></script>
 </body>
 
 </html>
