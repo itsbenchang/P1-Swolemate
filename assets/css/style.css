@@ -503,6 +503,11 @@ main{
 
 /* PROFILE CSS ***/
 
+.container{
+    display: flex;
+    justify-content: center;
+}
+
 .header-button{
     width:10%;
     min-width: 20px;
@@ -621,8 +626,31 @@ h3{
 
 .panel-body{
 }
+
+.icons{
+    width: 100px;
+    height: 100px;
+}
 /* ^ PROFILE CSS ^ */
 
+<<<<<<< HEAD
+
+/* SETTINGS */
+
+#image-profile{
+    width: 200px;
+    height: 200px;
+}
+
+.form-control{
+    max-width: 600px;
+}
+
+
+/*^ SETTINGS ^*/
+
+=======
+>>>>>>> 6069cb0fcec8182327b14273ec25210b264e17dd
 /*FOOTER*/
 
 .footer,
